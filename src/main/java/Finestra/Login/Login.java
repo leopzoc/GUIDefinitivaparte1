@@ -4,6 +4,7 @@
  */
 package Finestra.Login;
 
+import Cinema.domain.Amministratore;
 import Cinema.domain.Persona;
 import Cinema.domain.Ruolo;
 import Finestra.Amministratore.GUIadmin;
@@ -120,9 +121,10 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    Persona utenteAutenticato = null;
+    Amministratore amministratore = null;
     private void LoginB1ActionPerformed(java.awt.event.ActionEvent evt) {
-        Persona utenteAutenticato = null; // Inizialmente, nessun utente è autenticato
+         // Inizialmente, nessun utente è autenticato
 
         // Verifica prima se il file esiste e poi cerca l'utente
         boolean verifica = LetturaUtenti.esistenzaFile();
@@ -132,8 +134,9 @@ public class Login extends javax.swing.JFrame {
             if (utenteAutenticato != null) {
                 // Distingue tra amministratore e utente normale
                 if(utenteAutenticato.getRuolo() == Ruolo.AMMINISTRATORE) {
+                    amministratore = (Amministratore) utenteAutenticato;
                     dispose(); // Chiude il JFrame corrente
-                    java.awt.EventQueue.invokeLater(() -> new GUIadmin().setVisible(true));
+                    java.awt.EventQueue.invokeLater(() -> new GUIadmin(amministratore).setVisible(true));
                 } else {
                     dispose(); // Chiude il JFrame corrente
                     java.awt.EventQueue.invokeLater(() -> new FinestraUtente().setVisible(true));
@@ -148,6 +151,10 @@ public class Login extends javax.swing.JFrame {
 
         // Procede solo se un utente è stato autenticato
 
+    }
+
+    public Amministratore ReturnAmministratore(){
+        return amministratore;
     }
 
     private void LoginB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginB2ActionPerformed

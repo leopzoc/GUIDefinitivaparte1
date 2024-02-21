@@ -10,7 +10,7 @@ public class CreatoreFileUtenti {
             FileOutputStream streamUtenti = new FileOutputStream("UtentidelCinema.bin");
             ObjectOutputStream fileInizio = new ObjectOutputStream(streamUtenti);
 
-            Persona a1 = new Persona("admin", "admin", Ruolo.AMMINISTRATORE);
+            Persona a1 = new Amministratore("admin", "admin", Ruolo.AMMINISTRATORE);
             fileInizio.writeObject(a1);
 
             fileInizio.close();
