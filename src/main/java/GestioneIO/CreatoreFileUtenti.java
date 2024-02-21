@@ -1,9 +1,7 @@
 package GestioneIO;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+
 import Cinema.domain.*;
 
 public class CreatoreFileUtenti {
@@ -12,7 +10,7 @@ public class CreatoreFileUtenti {
             FileOutputStream streamUtenti = new FileOutputStream("UtentidelCinema.bin");
             ObjectOutputStream fileInizio = new ObjectOutputStream(streamUtenti);
 
-            Persona a1 = new Amministratore("admin", "admin", Ruolo.AMMINISTRATORE);
+            Persona a1 = new Persona("admin", "admin", Ruolo.AMMINISTRATORE);
             fileInizio.writeObject(a1);
 
             fileInizio.close();
@@ -22,4 +20,29 @@ public class CreatoreFileUtenti {
             System.out.println("Errore di I/O: " + e.getMessage());
         }
     }
+
+
+    public static void AggiungiUtente(String nome, String cognome) {
+        try {
+            boolean append = new File("UtentidelCinema.bin").exists();
+            FileOutputStream streamUtenti = new FileOutputStream("UtentidelCinema.bin", true);
+            ObjectOutputStream fileInizio = append ?
+                    new AppendingObjectOutputStream(streamUtenti) :
+                    new ObjectOutputStream(streamUtenti);
+
+            Persona a1 = new Persona(nome, cognome, Ruolo.UTENTE);
+            fileInizio.writeObject(a1);
+
+            fileInizio.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File non trovato: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Errore di I/O: " + e.getMessage());
+        }
+    }
+
+
 }
+
+
+

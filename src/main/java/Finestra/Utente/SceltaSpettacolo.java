@@ -20,10 +20,10 @@ import java.awt.event.ComponentEvent;
  *
  * @author p_leonardo_c
  */
-public class SceltaFilm extends javax.swing.JPanel {
+public class SceltaSpettacolo extends javax.swing.JPanel {
 
     /**
-     * Creates new form SceltaFilm
+     * Creates new form SceltaSpettacolo
      */
     private List<JButton> botones;
     private int indiceSelezionato=-1;
@@ -33,7 +33,7 @@ public class SceltaFilm extends javax.swing.JPanel {
         return indiceSelezionato;
     }
 
-    public SceltaFilm() {
+    public SceltaSpettacolo() {
         initComponents();
         botones = new ArrayList<>();
 

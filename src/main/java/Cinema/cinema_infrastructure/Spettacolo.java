@@ -1,8 +1,9 @@
 package Cinema.cinema_infrastructure;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Spettacolo {
+public class Spettacolo implements Serializable {
 
     // Variabili d'istanza private per memorizzare i dettagli dello spettacolo, inclusi il film, la sala e l'orario di proiezione.
     private Film film;

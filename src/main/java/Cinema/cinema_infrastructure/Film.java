@@ -1,6 +1,8 @@
 package Cinema.cinema_infrastructure;
 
-public class Film {
+import java.io.Serializable;
+
+public class Film implements Serializable {
 
     private String titolo;
     private int durata;

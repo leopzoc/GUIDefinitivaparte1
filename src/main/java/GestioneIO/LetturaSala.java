@@ -1,29 +1,33 @@
 package GestioneIO;
 
+import Cinema.cinema_infrastructure.Sala;
 import Cinema.domain.Persona;
 import Cinema.domain.Ruolo;
 
 import javax.swing.*;
 import java.io.*;
-
-public class LetturaUtenti {
-    public static boolean esistenzaFile() {
-        File file = new File("UtentidelCinema.bin");
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
+import Cinema.cinema_infrastructure.Sala;
+public class LetturaSala {
+  /*  public static boolean esistenzaFile() {
+        File file = new File("Sale.bin");
         if (!file.exists()) {
-            CreatoreFileUtenti.CreatoreFile();
+            IoGestoreSala.CreatoreFile();
             return false;
         }
         return true;
     }
 
-    public static Persona RitornaPersona(String nome, String cognome) {
-        try (FileInputStream file = new FileInputStream("UtentidelCinema.bin");
+    public static Map RitornaSala(String nome, String cognome) {
+        try (FileInputStream file = new FileInputStream("Sale.bin");
              ObjectInputStream lettura = new ObjectInputStream(file)) {
 
             while (true) {
                 try {
-                    Persona chisei = (Persona) lettura.readObject();
-                    if (chisei.getNome().equals(nome) && chisei.getCognome().equals(cognome)) {
+                    Map<Integer,Sala> sala = (Map<Integer, Sala>) lettura.readObject();
+                    if (sala.getNome().equals(nome) && chisei.getCognome().equals(cognome)) {
                         return chisei;
                     }
                 } catch (EOFException e) {
@@ -43,4 +47,6 @@ public class LetturaUtenti {
         JOptionPane.showMessageDialog(null, "UTENTE NON TROVATO");
         return null;
     }
+
+   */
 }

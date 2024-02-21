@@ -4,6 +4,8 @@
  */
 package Finestra.Login;
 
+import Cinema.domain.Persona;
+import Cinema.domain.Ruolo;
 import Finestra.Amministratore.GUIadmin;
 import Finestra.Utente.FinestraUtente;
 import GestioneIO.LetturaUtenti;
@@ -120,40 +122,32 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginB1ActionPerformed(java.awt.event.ActionEvent evt) {
+        Persona utenteAutenticato = null; // Inizialmente, nessun utente è autenticato
 
+        // Verifica prima se il file esiste e poi cerca l'utente
+        boolean verifica = LetturaUtenti.esistenzaFile();
 
-
-        if(LetturaUtenti.esistenzaFile()){
-            JOptionPane.showMessageDialog(null,"registrati!");
-        }
-
-        // Verifica le credenziali dell'utente
-        // Questo è un esempio, dovrai implementare la logica di verifica delle credenziali
-        boolean isAuthenticated = true; // Assumiamo che l'utente sia autenticato per l'esempio
-        boolean AdminAutenicate = true;
-        if (isAuthenticated || AdminAutenicate) {
-            // Chiudi il JFrame Login
-            this.dispose();
-
-            // Apri il JFrame FinestraUtente
-            if(isAuthenticated) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new FinestraUtente().setVisible(true);
-                    }
-                });
-            }
-            else if(AdminAutenicate){
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new GUIadmin().setVisible(true);
-                    }
-                });
+        if(verifica) {
+            utenteAutenticato = LetturaUtenti.RitornaPersona(NomeFild.getText(), Cognomefild.getText());
+            if (utenteAutenticato != null) {
+                // Distingue tra amministratore e utente normale
+                if(utenteAutenticato.getRuolo() == Ruolo.AMMINISTRATORE) {
+                    dispose(); // Chiude il JFrame corrente
+                    java.awt.EventQueue.invokeLater(() -> new GUIadmin().setVisible(true));
+                } else {
+                    dispose(); // Chiude il JFrame corrente
+                    java.awt.EventQueue.invokeLater(() -> new FinestraUtente().setVisible(true));
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Username o Password errati.", "Errore di accesso", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            // Mostra un messaggio di errore se le credenziali non sono corrette
-            JOptionPane.showMessageDialog(this, "Username o Password errati.", "Errore di accesso", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "File degli utenti non trovato!");
+
         }
+
+        // Procede solo se un utente è stato autenticato
+
     }
 
     private void LoginB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginB2ActionPerformed

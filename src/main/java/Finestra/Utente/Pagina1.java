@@ -18,12 +18,12 @@ public class Pagina1 extends javax.swing.JPanel {
      * Creates new form Pagina1
      */
 
-    private SceltaFilm Films;
+    private SceltaSpettacolo Films;
     private int Bavanti = 1;
     private int Bannulla = 1;
     public Pagina1() {
         initComponents();
-        Films = new SceltaFilm();
+        Films = new SceltaSpettacolo();
         ContentPAG.removeAll();
         ContentPAG.add(Films);
         ContentPAG.revalidate();

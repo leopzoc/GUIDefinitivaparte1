@@ -2,9 +2,11 @@ package Cinema.domain;
 
 import java.io.Serializable;
 
-public abstract class Persona implements Serializable {
+public  class Persona implements Serializable {
     private String nome;
     private String cognome;
+    private static final long serialVersionUID = -6564252117861956055L; // Usa il serialVersionUID dal messaggio di errore
+
     private Ruolo ruolo; // Aggiunto il campo ruolo
 
     // Costruttore modificato per includere il ruolo

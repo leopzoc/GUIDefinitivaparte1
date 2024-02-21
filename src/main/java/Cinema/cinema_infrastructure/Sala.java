@@ -1,6 +1,8 @@
 package Cinema.cinema_infrastructure;
 
-public class Sala {
+import java.io.Serializable;
+
+public class Sala implements Serializable {
     private int numeroSala;
     private int capacita; // Numero totale dei posti disponibili nella sala
     private int postiOccupati; // Numero dei posti attualmente occupati

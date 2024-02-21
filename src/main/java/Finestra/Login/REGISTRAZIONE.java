@@ -4,6 +4,11 @@
  */
 package Finestra.Login;
 
+import GestioneIO.CreatoreFileUtenti;
+import GestioneIO.LetturaUtenti;
+
+import javax.swing.*;
+
 /**
  *
  * @author p_leonardo_c
@@ -28,11 +33,11 @@ public class REGISTRAZIONE extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        reg1 = new javax.swing.JButton();
+        nomeLab = new javax.swing.JLabel();
+        cognLab = new javax.swing.JLabel();
+        nomeField = new javax.swing.JTextField();
+        cognomeField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -40,15 +45,16 @@ public class REGISTRAZIONE extends javax.swing.JDialog {
         jPanel1.setMaximumSize(new java.awt.Dimension(400, 300));
         jPanel1.setMinimumSize(new java.awt.Dimension(400, 300));
 
-        jButton1.setText("REGISTRATI");
+        reg1.setText("REGISTRATI");
+        reg1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reg1ActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("NOME");
+        nomeLab.setText("NOME");
 
-        jLabel2.setText("COGNOME");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
+        cognLab.setText("COGNOME");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,14 +63,14 @@ public class REGISTRAZIONE extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(nomeLab)
+                    .addComponent(cognLab))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reg1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addComponent(jTextField3)))
+                        .addComponent(nomeField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addComponent(cognomeField)))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -72,14 +78,14 @@ public class REGISTRAZIONE extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nomeLab)
+                    .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cognLab)
+                    .addComponent(cognomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(81, 81, 81)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reg1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
 
@@ -96,6 +102,20 @@ public class REGISTRAZIONE extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void reg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg1ActionPerformed
+        // TODO add your handling code here:
+        String nome;
+        String Cognome;
+
+        nome = nomeField.getText();
+        Cognome = cognomeField.getText();
+
+        if(LetturaUtenti.esistenzaFile()){
+            CreatoreFileUtenti.AggiungiUtente(nome,Cognome);
+            JOptionPane.showMessageDialog(null,"creato");
+        }
+    }//GEN-LAST:event_reg1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,11 +160,11 @@ public class REGISTRAZIONE extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel cognLab;
+    private javax.swing.JTextField cognomeField;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField nomeField;
+    private javax.swing.JLabel nomeLab;
+    private javax.swing.JButton reg1;
     // End of variables declaration//GEN-END:variables
 }
